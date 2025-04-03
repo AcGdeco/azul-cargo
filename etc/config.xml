@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <carriers>
+            <azulcargo>
+                <active>0</active>
+                <model>Deco\Azulcargo\Model\Carrier\Shipping</model>
+                <title>Azul Cargo</title>
+                <handling_type>F</handling_type>
+                <coleta>0</coleta>
+                <sigla_servico>PREMIUM,PREMIUM_CORP,EXPRESSO,EXPRESSO_CORP,ECOMM,ECOMM_CORP,STANDARD,STANDARD_CORP</sigla_servico>
+            </azulcargo>
+        </carriers>
+    </default>
+</config>

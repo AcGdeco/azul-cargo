@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="carriers" translate="label" type="text" sortOrder="320" showInDefault="1" showInWebsite="1" showInStore="1">
+            <group id="azulcargo" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Azul Cargo</label>
+                <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="environment" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Environment</label>
+                    <source_model>Deco\Azulcargo\Model\Environment</source_model>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="email" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="password" translate="label" type="password" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Password</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="title" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Nome</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="cep_origem" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" >
+                    <label>CEP Origem</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="coleta" translate="label" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Coleta</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Indica se será realizada a coleta in-loco da mercadoria para despacho. Para calcular coleta, deve ser informado "sim", caso contrário, deve ser informado:"não".</comment>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="sigla_servico" translate="label" type="multiselect" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Sigla Servico</label>
+                    <comment>Caso seja necessário a cotação para um serviço especifico, este campo pode ser utilizado para realização do filtro.</comment>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                    <source_model>Deco\Azulcargo\Model\ServiceCodes</source_model>
+                </field>
+                <field id="handling_type" translate="label" type="select" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Calculate Handling Fee</label>
+                    <source_model>Magento\Shipping\Model\Source\HandlingType</source_model>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="handling_fee" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Handling Fee</label>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="base_origem" translate="label" type="text" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1" >
+                    <label>Base Origem</label>
+                    <comment>Sigla da unidade de origem da Azul Cargo Express. Esta informação pode ser consultada na API de Consulta de Unidades.</comment>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="tipo_entrega" translate="label" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1" >
+                    <label>Tipo Entrega</label>
+                    <comment>Indica qual o tipo de entrega contratado e deverá ser preenchido no seguinte formato:DOMICILIO (para entregas em domicílio/delivery) AEROPORTO (para entregas retira aeroporto/pick up).</comment>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="base_destino" translate="label" type="text" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1" >
+                    <label>Base Destino</label>
+                    <comment>Sigla da unidade de destino da Azul Cargo Express, o preenchimento desse campo é obrigatório se o campo Tipo Entrega estiver como 'AEROPORTO'. Esta informação pode ser consultada na API de Consulta de Unidades.</comment>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="weight_attribute" translate="label" type="select" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Atributo Peso</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                    <source_model>Deco\Azulcargo\Model\Product\Attributes</source_model>
+                    <comment>Este atributo será utilizado para obter as cotações da API.</comment>
+                </field>
+                <field id="height_attribute" translate="label" type="select" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Atributo Altura</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                    <source_model>Deco\Azulcargo\Model\Product\Attributes</source_model>
+                    <comment>Este atributo será utilizado para obter as cotações da API.</comment>
+                </field>
+                <field id="length_attribute" translate="label" type="select" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Atributo Comprimento</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                    <source_model>Deco\Azulcargo\Model\Product\Attributes</source_model>
+                    <comment>Este atributo será utilizado para obter as cotações da API.</comment>
+                </field>
+                <field id="width_attribute" translate="label" type="select" sortOrder="160" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Atributo Largura</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                    <source_model>Deco\Azulcargo\Model\Product\Attributes</source_model>
+                    <comment>Este atributo será utilizado para obter as cotações da API.</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
