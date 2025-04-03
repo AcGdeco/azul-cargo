@@ -99,7 +99,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     public function getPriceFee($total, $handling_fee, $handling_type)
     {
         if($handling_fee != null && $handling_fee != ""){
-            if($handling_type == "F"){
+            if($handling_type != "P"){
                 $price = $total + $handling_fee;
             }else{
                 $price = $total + $total * $handling_fee / 100;

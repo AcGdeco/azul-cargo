@@ -85,13 +85,16 @@ class Shipping extends \Magento\Shipping\Model\Carrier\AbstractCarrier implement
             return false;
         }
 
+        $dest_postcode = $request->getData('dest_postcode') ? preg_replace('/[^0-9]/', '', $request->getData('dest_postcode')): "";
+        if($dest_postcode == null || $dest_postcode == ""){
+            return false;
+        }
+
         /** @var \Magento\Shipping\Model\Rate\Result $result */
         $result = $this->_rateResultFactory->create();
 
         /** @var \Magento\Quote\Model\Quote\Address\RateResult\Method $method */
         $method = $this->_rateMethodFactory->create();
-
-        $dest_postcode = $request->getData('dest_postcode') ? preg_replace('/[^0-9]/', '', $request->getData('dest_postcode')): "";
 
         $sigla_servico = $this->getConfigData('sigla_servico');
 
